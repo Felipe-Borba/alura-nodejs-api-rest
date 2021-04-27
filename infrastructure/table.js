@@ -12,13 +12,15 @@ class table {
             +'service varchar(20) NOT NULL, '
             +'serviceStatus varchar(20) NOT NULL, '
             +'observations text, '
+            +'date datetime NOT NULL, '
+            +'createTime datetime NOT NULL, '
             +'PRIMARY KEY(id))'
 
         this.connection.query(sql, error => {
             if (error) {
                 console.log(error)
             } else {
-                console.log('table created')
+                console.log('table initialized')
             }
         })
     }
