@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Felipe-Borba/alura-nodejs-api-rest/issues"
   },
-  "homepage": "https://github.com/Felipe-Borba/alura-nodejs-api-rest#readme"
+  "homepage": "https://github.com/Felipe-Borba/alura-nodejs-api-rest#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
