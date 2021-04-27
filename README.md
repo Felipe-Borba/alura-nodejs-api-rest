@@ -30,3 +30,6 @@ to add it in script modify package.js
   },
 
 this tool allow to automatically restarting the application when file changes in the directory
+
+to make easy load my routes in other files we gonna need consign: https://www.npmjs.com/package/consign
+$ npm i consign
