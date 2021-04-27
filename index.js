@@ -1,7 +1,17 @@
 const customExpress = require('./config/customExpress')
+const connection = require('./infrastructure/infrastructure')
 
-const app = customExpress()
+connection.connect((error) => {
+    if (error) {
+        console.log(error)
+    } else {
+        console.log('database connected')
 
-app.listen(3000, () => console.log('server running in port:3000'))
+        const app = customExpress()
+
+        app.listen(3000, () => console.log('server running in port:3000'))
+    }
+})
+
 
 

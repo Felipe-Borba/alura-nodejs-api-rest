@@ -51,3 +51,8 @@ library body-parser
 $ npm i body-parser
 
 used to parse html body requests
+
+---
+add database to the project mysql
+
+$ npm install mysql
