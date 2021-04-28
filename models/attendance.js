@@ -34,7 +34,7 @@ class Attendance {
                 if (error) {
                     response.status(400).json(error)
                 } else {
-                    response.status(201).json(result)
+                    response.status(201).json(attendance)
                 }
             })
         }
@@ -75,7 +75,19 @@ class Attendance {
             if (error) {
                 response.status(400).json(error)
             } else {
-                response.status(200).json(result)
+                response.status(200).json({...values, id})
+            }
+        })
+    }
+
+    delete(id, response) {
+        const sql = 'DELETE FROM Attendance WHERE id=?'
+
+        connection.query(sql, id, (error, result) => {
+            if (error) {
+                response.status(400).json(error)
+            } else {
+                response.status(200).json({id})
             }
         })
     }

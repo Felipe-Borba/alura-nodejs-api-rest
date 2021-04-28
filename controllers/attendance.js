@@ -19,4 +19,9 @@ module.exports = app => {
         const values = req.body
         Attendance.update(id, values, res)
     })
+
+    app.delete('/attendance/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+        Attendance.delete(id, res)
+    })
 }
