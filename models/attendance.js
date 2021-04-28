@@ -41,6 +41,30 @@ class Attendance {
             })
         }
     }
+
+    findAll(response) {
+        const sql = 'SELECT * FROM Attendance'
+
+        connection.query(sql, (error, result) => {
+            if (error) {
+                response.status(500).json(error)
+            } else {
+                response.status(200).json(result)
+            }
+        })
+    }
+
+    findById(id,response) {
+        const sql = 'SELECT * FROM Attendance WHERE id='+id
+        connection.query(sql, (error, result) => {
+
+            if (error) {
+                response.status(500).json(error)
+            } else {
+                response.status(200).json(result[0])
+            }
+        })
+    }
 }
 
 module.exports = new Attendance
