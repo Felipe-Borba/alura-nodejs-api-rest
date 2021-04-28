@@ -33,10 +33,8 @@ class Attendance {
             connection.query(sql, enrichAttendance, (error, result) => {
                 if (error) {
                     response.status(400).json(error)
-                    console.log(error)
                 } else {
                     response.status(201).json(result)
-                    console.log(result)
                 }
             })
         }
@@ -55,13 +53,29 @@ class Attendance {
     }
 
     findById(id,response) {
-        const sql = 'SELECT * FROM Attendance WHERE id='+id
-        connection.query(sql, (error, result) => {
-
+        const sql = 'SELECT * FROM Attendance WHERE id=?'
+        
+        connection.query(sql, id, (error, result) => {
             if (error) {
                 response.status(500).json(error)
             } else {
                 response.status(200).json(result[0])
+            }
+        })
+    }
+
+    update(id, values, response) {
+        if(values.date) {
+            values.date = moment(values.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        }
+
+        const sql = 'UPDATE Attendance SET ? WHERE id=?'
+
+        connection.query(sql, [values, id], (error, result) => {
+            if (error) {
+                response.status(400).json(error)
+            } else {
+                response.status(200).json(result)
             }
         })
     }

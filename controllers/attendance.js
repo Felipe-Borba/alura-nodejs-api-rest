@@ -13,4 +13,10 @@ module.exports = app => {
     app.post('/attendance', (req, res) => {
         Attendance.add(req.body, res)
     })
+
+    app.patch('/attendance/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+        const values = req.body
+        Attendance.update(id, values, res)
+    })
 }
