@@ -3,6 +3,7 @@ class table {
         this.connection = connection
 
         this.createAttendance()
+        this.createPet()
     }
 
     createAttendance() {
@@ -20,7 +21,23 @@ class table {
             if (error) {
                 console.log(error)
             } else {
-                console.log('table initialized')
+                console.log('table Attendance initialized')
+            }
+        })
+    }
+
+    createPet() {
+        const query = `CREATE TABLE IF NOT EXISTS pets 
+            (id int NOT NULL AUTO_INCREMENT, 
+            name varchar(50),
+            image varchar(200),
+            PRIMARY KEY (id))`
+
+        this.connection.query(query, error => {
+            if(error) {
+                console.log(error);
+            } else {
+                console.log('table pet initialized');
             }
         })
     }

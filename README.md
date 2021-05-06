@@ -1,7 +1,7 @@
 # alura-nodejs-api-rest
  code of alura, nodejs training
 
-# annotations:
+# notes:
 
 $ npm init 
 
@@ -24,7 +24,7 @@ and to run this script type
 $ npm start 
 
 ---
-to increment this script you can install nodemon: https://www.npmjs.com/package/nodemon
+to increment this script (make auto reload) you can install nodemon: https://www.npmjs.com/package/nodemon
 and install it only in dev mode:
 
 $ npm install --save-dev nodemon
@@ -63,7 +63,7 @@ lib to convert time
 $ npm i moment
 
 ---
-## 01.Buffer
+## file system
 *read a image and copy synchronously*
 
 To simply test this part run:
@@ -71,8 +71,3 @@ To simply test this part run:
 $ node .\file_system\fileUpload.js
 ```
 from root folder
-
----
-## 02.Stream
-*to do the same thing above, but asynchronous*
-
