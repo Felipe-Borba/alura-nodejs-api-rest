@@ -1,7 +1,7 @@
 # alura-nodejs-api-rest
  code of alura, nodejs training
 
-## annotations:
+# annotations:
 
 $ npm init 
 
@@ -61,3 +61,15 @@ $ npm install mysql
 lib to convert time
 
 $ npm i moment
+
+---
+## 01-Buffer
+*read a image and copy synchronously*
+
+To simply test this part run:
+```
+$ node .\file_system\fileUpload.js
+```
+from root folder
+
+---
