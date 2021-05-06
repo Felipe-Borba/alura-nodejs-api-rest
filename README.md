@@ -33,7 +33,7 @@ to add it in script modify package.js
 ````json
 "scripts": {
     "start": "nodemon index.js",
-    ...
+    [...]
   },
 ````
 
@@ -63,7 +63,7 @@ lib to convert time
 $ npm i moment
 
 ---
-## 01-Buffer
+## 01.Buffer
 *read a image and copy synchronously*
 
 To simply test this part run:
@@ -73,3 +73,6 @@ $ node .\file_system\fileUpload.js
 from root folder
 
 ---
+## 02.Stream
+*to do the same thing above, but asynchronous*
+
