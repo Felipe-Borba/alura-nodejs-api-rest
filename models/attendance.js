@@ -55,16 +55,8 @@ class Attendance {
         }
     }
 
-    findAll(response) {
-        const sql = 'SELECT * FROM Attendance'
-
-        connection.query(sql, (error, result) => {
-            if (error) {
-                response.status(500).json(error)
-            } else {
-                response.status(200).json(result)
-            }
-        })
+    findAll() {
+        return repository.findAll()
     }
 
     findById(id, response) {

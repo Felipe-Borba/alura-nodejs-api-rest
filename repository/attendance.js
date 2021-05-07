@@ -6,6 +6,11 @@ class Attendance {
         return query(sql, attendance)
     }
 
+    findAll(){
+        const sql = 'SELECT * FROM Attendance'
+
+        return query(sql)
+    }
 }
 
 module.exports = new Attendance

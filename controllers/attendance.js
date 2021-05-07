@@ -3,7 +3,13 @@ const Attendance = require('../models/attendance')
 
 module.exports = app => {
     app.get('/attendance', (req, res) => {
-        Attendance.findAll(res)
+        Attendance.findAll()
+            .then(response => {
+                res.status(200).json(response)
+            })
+            .catch(err => {
+                res.status(400).json(err)
+            })
     })
 
     app.get('/attendance/:id', (req, res) => {
