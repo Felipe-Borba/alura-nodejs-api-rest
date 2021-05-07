@@ -3,8 +3,9 @@
 
 # notes:
 
+````
 $ npm init 
-
+````
 create node project
 
 https://www.npmjs.com/ 
@@ -71,3 +72,12 @@ To simply test this part run:
 $ node .\file_system\fileUpload.js
 ```
 from root folder
+
+## 03.Service
+*Simulate my api calling another api*
+
+To run this service api:
+```
+$ node .\index.js
+```
+inside service folder
