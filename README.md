@@ -63,7 +63,7 @@ lib to convert time
 $ npm i moment
 
 ---
-## file system
+## ~~file system~~ deprecated (now with end point)
 *read a image and copy synchronously*
 
 To simply test this part run:

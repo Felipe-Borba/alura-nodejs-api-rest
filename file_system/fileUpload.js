@@ -1,9 +1,12 @@
 const fs = require('fs')
 
+module.exports = (path, fileName, callbackImageCreated) => {
+    const newPath = `./assets/images/${fileName}`
+    // is there any difference between ./ and ../ ? 
+    fs.createReadStream(path)
+        .pipe(fs.createWriteStream(newPath))
+        .on('finish', () => {
+            callbackImageCreated(newPath)
+        })
 
-// is there any difference between ./ and ../ ? 
-fs.createReadStream('./assets/neko.jpg')
-    .pipe(fs.createWriteStream('./assets/neko(copy).jpg'))
-    .on('finish', () => {
-        console.log('image copied successfully')
-    })
+}
