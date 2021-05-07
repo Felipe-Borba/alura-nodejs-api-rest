@@ -1,3 +1,4 @@
+const { response } = require('express')
 const Attendance = require('../models/attendance')
 
 module.exports = app => {
@@ -11,7 +12,13 @@ module.exports = app => {
     })
 
     app.post('/attendance', (req, res) => {
-        Attendance.add(req.body, res)
+        Attendance.add(req.body)
+            .then(response => {
+                res.status(200).json(response)
+            })
+            .catch(err => {
+                res.status(400).json(err)
+            })
     })
 
     app.patch('/attendance/:id', (req, res) => {

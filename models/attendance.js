@@ -1,9 +1,10 @@
 const connection = require('../infrastructure/database/connection')
 const moment = require('moment')
 const axios = require('axios')
+const repository = require('../repository/attendance')
 
 class Attendance {
-    add(attendance, response) {
+    add(attendance) {
         const createTime = moment().format('YYYY-MM-DD HH:MM:SS')
         const date = moment(attendance.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
 
@@ -26,18 +27,15 @@ class Attendance {
         const existErrors = errors.length
 
         if (existErrors) {
-            response.status(400).json(errors)
+            return new Promise((resolve, reject) => reject(errors))
         } else {
             const enrichAttendance = { ...attendance, createTime, date }
 
-            const sql = 'INSERT INTO Attendance SET ?'
-            connection.query(sql, enrichAttendance, (error, result) => {
-                if (error) {
-                    response.status(400).json(error)
-                } else {
-                    response.status(201).json(attendance)
-                }
-            })
+            return repository.add(enrichAttendance)
+                .then(result => {
+                    const id = result.insertId
+                    return { ...attendance, id }
+                })
         }
     }
 
@@ -56,9 +54,9 @@ class Attendance {
     findById(id, response) {
         const sql = 'SELECT * FROM Attendance WHERE id=?'
 
-        connection.query(sql, id, (error, result) => { 
+        connection.query(sql, id, (error, result) => {
             if (error || result.length <= 0) {
-                response.status(500).json({error})
+                response.status(500).json({ error })
             } else {
                 const attendanceResponse = result[0]
                 const cpf = attendanceResponse.client

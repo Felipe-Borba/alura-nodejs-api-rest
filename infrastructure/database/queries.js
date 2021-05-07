@@ -12,3 +12,5 @@ const runQuery = (query, parameters = '') => {
     })
 
 }
+
+module.exports = runQuery
