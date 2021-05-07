@@ -4,28 +4,44 @@ const axios = require('axios')
 const repository = require('../repository/attendance')
 
 class Attendance {
-    add(attendance) {
-        const createTime = moment().format('YYYY-MM-DD HH:MM:SS')
-        const date = moment(attendance.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+    constructor() {
+        this.validateDate = ({ date, createTime }) => moment(date).isSameOrAfter(createTime)
+        this.validateClient = (length) => length >= 5
+        this.validate = (parameters) => this.validations.filter(field => {
+            const { name } = field
+            const param = parameters[name]
 
-        const validateDate = moment(date).isSameOrAfter(createTime)
-        const validateClient = attendance.client.length >= 5
-        const validations = [
+            return !field.valid(param)
+        })
+
+        this.validations = [
             {
                 name: 'data',
-                valid: validateDate,
+                valid: this.validateDate,
                 message: 'date should be equal or grater them todays date'
             },
             {
                 name: 'client',
-                valid: validateClient,
+                valid: this.validateClient,
                 message: 'client should have at least 5 characters'
             }
         ]
 
-        const errors = validations.filter(field => !field.valid)
-        const existErrors = errors.length
+    }
 
+
+    add(attendance) {
+        const createTime = moment().format('YYYY-MM-DD HH:MM:SS')
+        const date = moment(attendance.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+
+        
+        
+        const params = {
+            date: { date, createTime },
+            client: { length: attendance.client.length() }
+        }
+        const errors = this.validate(params)
+        const existErrors = errors.length
         if (existErrors) {
             return new Promise((resolve, reject) => reject(errors))
         } else {
