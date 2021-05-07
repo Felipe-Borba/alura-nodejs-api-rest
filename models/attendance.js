@@ -1,4 +1,4 @@
-const connection = require('../infrastructure/connection')
+const connection = require('../infrastructure/database/connection')
 const moment = require('moment')
 const axios = require('axios')
 
@@ -57,8 +57,6 @@ class Attendance {
         const sql = 'SELECT * FROM Attendance WHERE id=?'
 
         connection.query(sql, id, (error, result) => { 
-            console.log(error,result);
-            console.log(result.length);
             if (error || result.length <= 0) {
                 response.status(500).json({error})
             } else {
