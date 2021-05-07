@@ -3,6 +3,7 @@ const moment = require('moment')
 const axios = require('axios')
 const repository = require('../repository/attendance')
 
+// TODO refactor code
 class Attendance {
     constructor() {
         this.validateDate = ({ date, createTime }) => moment(date).isSameOrAfter(createTime)
@@ -33,8 +34,6 @@ class Attendance {
     add(attendance) {
         const createTime = moment().format('YYYY-MM-DD HH:MM:SS')
         const date = moment(attendance.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
-
-        
         
         const params = {
             date: { date, createTime },
