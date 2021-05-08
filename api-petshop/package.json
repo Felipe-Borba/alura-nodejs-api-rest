@@ -2,14 +2,14 @@
   "name": "api-petshop",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./api/index.js",
   "scripts": {
-    "start": "node ./api/index.js",
+    "start": "nodemon ./api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Felipe-Borba/alura-nodejs-api-rest/tree/Crie_uma_API_REST_padronizada_e_escal%C3%A1vel"
+    "url": "https://github.com/Felipe-Borba/alura-nodejs-api-rest.git"
   },
   "author": "Felipe",
   "license": "ISC",
@@ -19,5 +19,8 @@
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
