@@ -1,10 +1,11 @@
 # alura-nodejs-api-rest
  code of alura, nodejs training
 
-## annotations:
+# notes:
 
+````
 $ npm init 
-
+````
 create node project
 
 https://www.npmjs.com/ 
@@ -24,7 +25,7 @@ and to run this script type
 $ npm start 
 
 ---
-to increment this script you can install nodemon: https://www.npmjs.com/package/nodemon
+to increment this script (make auto reload) you can install nodemon: https://www.npmjs.com/package/nodemon
 and install it only in dev mode:
 
 $ npm install --save-dev nodemon
@@ -33,7 +34,7 @@ to add it in script modify package.js
 ````json
 "scripts": {
     "start": "nodemon index.js",
-    ...
+    [...]
   },
 ````
 
@@ -61,3 +62,22 @@ $ npm install mysql
 lib to convert time
 
 $ npm i moment
+
+---
+## ~~file system~~ deprecated (now with end point)
+*read a image and copy synchronously*
+
+To simply test this part run:
+```
+$ node .\file_system\fileUpload.js
+```
+from root folder
+
+## 03.Service
+*Simulate my api calling another api*
+
+To run this service api:
+```
+$ node .\index.js
+```
+inside service folder
