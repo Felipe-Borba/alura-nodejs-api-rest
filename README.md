@@ -1,2 +1,11 @@
-# alura-nodejs-api-rest
- code of alura, nodejs training
+# Notes
+
+## Basics
+
+To initialize project
+
+```gcc
+    npm init
+```
+
+*inside api-petShop folder*.
