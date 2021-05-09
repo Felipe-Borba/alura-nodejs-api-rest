@@ -11,6 +11,19 @@ module.exports = {
 
     insert(supplier) {
         return Model.create(supplier);
+    },
+
+    async findById(id) {
+        const find = await Model.findOne({
+            where: {
+                id: id
+            }
+        });
+        if (!find) {
+            throw new Error('supplier not found');
+        }
+
+        return find;
     }
-    
+
 }

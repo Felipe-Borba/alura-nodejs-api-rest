@@ -14,4 +14,18 @@ router.post('/suppliers', async (requisition, response) => {
     response.send(JSON.stringify(supplier));
 });
 
+router.get('/suppliers/:id', async (requisition, response) => {
+    try {
+        const id = requisition.params.id;
+        const supplier = new Supplier({ id: id });
+        await supplier.getById();
+        response.send(JSON.stringify(supplier));
+    } catch (error) {
+        console.log('Error log:', error);
+        response.send(JSON.stringify({
+            message: error.message
+        }))
+    }
+})
+
 module.exports = router;

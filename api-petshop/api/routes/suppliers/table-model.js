@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const intence = require('../../data-base')
+const instance = require('../../data-base')
 
 const column = {
     company: {
@@ -27,4 +27,4 @@ const options = {
     //                        //
 }
 
-module.exports = intence.define('supplier', column, options)
+module.exports = instance.define('supplier', column, options)

@@ -23,6 +23,17 @@ class Supplier {
         this.updated = result.created;
         this.version = result.version;
     }
+
+    async getById() {
+        const response = await supplierTable.findById(this.id);
+        this.company = response.dataValues.company;
+        this.email = response.dataValues.email;
+        this.category = response.dataValues.category;
+        this.created = response.dataValues.created;
+        this.updated = response.dataValues.updated;
+        this.version = response.dataValues.version;
+    }
+
 }
 
 module.exports = Supplier;
