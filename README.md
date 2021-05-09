@@ -2,7 +2,7 @@
 
 ## Sensitive Data
 
-In folder config put a json file named: `default.json`
+In api folder create a new file named: `config/default.json`
 
 Ex:
 
