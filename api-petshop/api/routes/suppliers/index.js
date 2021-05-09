@@ -17,7 +17,7 @@ router.post('/suppliers', async (requisition, response) => {
 router.get('/suppliers/:id', async (requisition, response) => {
     try {
         const id = requisition.params.id;
-        const supplier = new Supplier({ id: id });
+        const supplier = new Supplier({ id });
         await supplier.getById();
         response.send(JSON.stringify(supplier));
     } catch (error) {
@@ -26,6 +26,22 @@ router.get('/suppliers/:id', async (requisition, response) => {
             message: error.message
         }))
     }
+})
+
+router.put('/suppliers/:id', async (requisition, response) => {
+
+    try {
+        const id = requisition.params.id;
+        const supplier = new Supplier({ ...requisition.body, id });
+        await supplier.update();
+        response.end();
+    } catch (error) {
+        console.log(error);
+        response.send(JSON.stringify({
+            message: error.message
+        }))
+    }
+
 })
 
 module.exports = router;

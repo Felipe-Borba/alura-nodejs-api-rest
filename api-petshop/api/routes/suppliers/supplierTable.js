@@ -24,6 +24,14 @@ module.exports = {
         }
 
         return find;
-    }
+    },
 
+    async updateValue(id, updateField) {
+        return Model.update(
+            updateField,
+            {
+                where: { id }
+            }
+        );
+    }
 }
