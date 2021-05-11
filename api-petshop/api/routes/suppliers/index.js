@@ -9,9 +9,16 @@ router.get('/suppliers', async (requisition, response) => {
 });
 
 router.post('/suppliers', async (requisition, response) => {
-    const supplier = new Supplier(requisition.body);
-    await supplier.add();
-    response.send(JSON.stringify(supplier));
+    try {
+        const supplier = new Supplier(requisition.body);
+        await supplier.add();
+        response.send(JSON.stringify(supplier));
+    } catch (error) {
+        //console.log('Error log:', error);
+        response.send(JSON.stringify({
+            message: error.message
+        }))
+    }
 });
 
 router.get('/suppliers/:id', async (requisition, response) => {
@@ -21,12 +28,12 @@ router.get('/suppliers/:id', async (requisition, response) => {
         await supplier.getById();
         response.send(JSON.stringify(supplier));
     } catch (error) {
-        console.log('Error log:', error);
+        //console.log('Error log:', error);
         response.send(JSON.stringify({
             message: error.message
         }))
     }
-})
+});
 
 router.put('/suppliers/:id', async (requisition, response) => {
 
@@ -36,12 +43,25 @@ router.put('/suppliers/:id', async (requisition, response) => {
         await supplier.update();
         response.end();
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         response.send(JSON.stringify({
             message: error.message
-        }))
+        }));
     }
 
-})
+});
+
+router.delete('/suppliers/:id', async (requisition, response) => {
+    try {
+        const id = requisition.params.id;
+        const supplier = new Supplier({ id });
+        await supplier.getById();
+        await supplier.remove();
+        response.end();
+    } catch (error) {
+        //console.log(error);
+        response.send(JSON.stringify({ message: error.message }));
+    }
+});
 
 module.exports = router;

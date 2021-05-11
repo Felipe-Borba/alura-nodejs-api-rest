@@ -10,7 +10,7 @@ Ex:
 {
     "mysql": {
         "database": "connection name",
-        "user": "user name",
+        "user": "root",
         "password": "*****",
         "host": "localhost ip"
     },

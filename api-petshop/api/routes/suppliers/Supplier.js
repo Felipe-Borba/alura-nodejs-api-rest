@@ -1,7 +1,7 @@
 const supplierTable = require("./supplierTable");
 
 class Supplier {
-    constructor({ id, company,  email, category, created, updated, version }) {
+    constructor({ id, company, email, category, created, updated, version }) {
         this.id = id;
         this.company = company;
         this.email = email;
@@ -12,6 +12,8 @@ class Supplier {
     }
 
     async add() {
+        this.check();
+        
         const result = await supplierTable.insert({
             company: this.company,
             email: this.email,
@@ -42,7 +44,7 @@ class Supplier {
         const field = ['company', 'email', 'category'];
         const updateField = {};
 
-        field.forEach( field => {
+        field.forEach(field => {
             const value = this[field]; //take class parameters
             if (typeof value === 'string' && value.length > 0) {
                 updateField[field] = value;
@@ -52,8 +54,24 @@ class Supplier {
         if (Object.keys(updateField).length === 0) {
             throw new Error('please supply any field to update');
         }
-        
+
         await supplierTable.updateValue(this.id, updateField);
+    }
+
+    async remove() {
+        return supplierTable.remove(this.id);
+    }
+
+    check() {
+        const check = ['company', 'email', 'category'];
+
+        check.forEach(field => {
+            const value = this[field];
+
+            if (typeof value !== 'string' || value.length === 0) {
+                throw new Error(`field ${field} not filled`)
+            }
+        });
     }
 
 }

@@ -33,5 +33,11 @@ module.exports = {
                 where: { id }
             }
         );
+    },
+
+    async remove(id) {
+        Model.destroy({
+            where: {id}
+        });
     }
 }
