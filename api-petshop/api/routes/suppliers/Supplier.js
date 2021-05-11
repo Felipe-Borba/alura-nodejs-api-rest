@@ -13,7 +13,7 @@ class Supplier {
 
     async add() {
         this.check();
-        
+
         const result = await supplierTable.insert({
             company: this.company,
             email: this.email,
@@ -69,7 +69,7 @@ class Supplier {
             const value = this[field];
 
             if (typeof value !== 'string' || value.length === 0) {
-                throw new Error(`field ${field} not filled`)
+                throw new Error(`Invalid field: '${field}'`)
             }
         });
     }
