@@ -19,6 +19,7 @@ router.post('/suppliers', async (requisition, response) => {
         response.send(JSON.stringify(supplier));
     } catch (error) {
         //console.log('Error log:', error);
+        response.status(400);
         response.send(JSON.stringify({
             message: error.message
         }))
@@ -35,6 +36,7 @@ router.get('/suppliers/:id', async (requisition, response) => {
         response.send(JSON.stringify(supplier));
     } catch (error) {
         //console.log('Error log:', error);
+        response.status(404);
         response.send(JSON.stringify({
             message: error.message
         }))
@@ -52,6 +54,7 @@ router.put('/suppliers/:id', async (requisition, response) => {
         response.end();
     } catch (error) {
         //console.log(error);
+        response.status(400);
         response.send(JSON.stringify({
             message: error.message
         }));
@@ -70,6 +73,7 @@ router.delete('/suppliers/:id', async (requisition, response) => {
         response.end();
     } catch (error) {
         //console.log(error);
+        response.status(404);
         response.send(JSON.stringify({ message: error.message }));
     }
 });
