@@ -1,11 +1,12 @@
 const router = require('express').Router();
+const NotFound = require('../../error/NotFound');
 const Supplier = require('./Supplier');
-const supplierTable = require('./supplierTable')
+const supplierTable = require('./supplierTable');
 
 
 router.get('/suppliers', async (requisition, response) => {
     const result = await supplierTable.list();
-    
+
     response.status(200);
     response.send(JSON.stringify(result));
 });
@@ -43,23 +44,17 @@ router.get('/suppliers/:id', async (requisition, response) => {
     }
 });
 
-router.put('/suppliers/:id', async (requisition, response) => {
-
+router.put('/suppliers/:id', async (requisition, response, next) => {
     try {
         const id = requisition.params.id;
         const supplier = new Supplier({ ...requisition.body, id });
         await supplier.update();
-        
+
         response.status(204);
         response.end();
     } catch (error) {
-        //console.log(error);
-        response.status(400);
-        response.send(JSON.stringify({
-            message: error.message
-        }));
+        next(error);
     }
-
 });
 
 router.delete('/suppliers/:id', async (requisition, response) => {

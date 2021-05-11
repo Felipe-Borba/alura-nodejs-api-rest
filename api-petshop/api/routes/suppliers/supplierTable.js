@@ -1,4 +1,5 @@
-const Model = require('./table-model')
+const Model = require('./table-model');
+const NotFound = require('../../error/NotFound');
 
 /* 
 * In the tutorial this is used to translate sequelize command name
@@ -20,7 +21,7 @@ module.exports = {
             }
         });
         if (!find) {
-            throw new Error('supplier not found');
+            throw new NotFound();
         }
 
         return find;

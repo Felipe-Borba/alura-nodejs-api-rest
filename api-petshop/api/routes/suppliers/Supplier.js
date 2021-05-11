@@ -41,6 +41,7 @@ class Supplier {
 
     async update() {
         await supplierTable.findById(this.id);
+        
         const field = ['company', 'email', 'category'];
         const updateField = {};
 
